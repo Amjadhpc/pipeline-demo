@@ -10,8 +10,20 @@ pipeline {
     }
 
     stage('Buzz Test') {
-      steps {
-        junit 'src/my-app/target/surefire-reports/**/*.xml'
+      parallel {
+        stage('Testing A') {
+          steps {
+            junit 'src/my-app/target/surefire-reports/**/*.xml'
+          }
+        }
+
+        stage('Testing B') {
+          steps {
+            sh '''sleep 10
+echo done'''
+          }
+        }
+
       }
     }
 
