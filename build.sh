@@ -1,2 +1,4 @@
 #hello
- src/mvn package
+ cd src/my-app
+ pwd
+ mvn package
