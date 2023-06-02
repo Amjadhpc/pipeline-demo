@@ -4,7 +4,7 @@ pipeline {
     stage('BUZZ Build') {
       steps {
         sh './build.sh'
-        archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
+        archiveArtifacts(artifacts: 'src/my-apptarget/*.jar', fingerprint: true)
       }
     }
 
