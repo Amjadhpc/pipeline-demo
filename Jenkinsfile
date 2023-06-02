@@ -10,7 +10,7 @@ pipeline {
 
     stage('Buzz Test') {
       steps {
-        junit 'src/my-app//surefire-reports/**/*.xml'
+        junit 'src/my-app/target/surefire-reports/**/*.xml'
       }
     }
 
