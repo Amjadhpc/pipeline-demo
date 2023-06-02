@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('BUZZ Build') {
       steps {
-        sh '''echo I am $BUZZ_NAME
+        sh '''echo I am ${BUZZ_NAME}
 ./build.sh'''
         archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
       }
