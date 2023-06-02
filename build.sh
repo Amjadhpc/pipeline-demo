@@ -1,3 +1,2 @@
 #hello
-cd src
-mvn package
+ src/mvn package
