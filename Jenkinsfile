@@ -1,25 +1,34 @@
 pipeline {
   agent any
   stages {
-    stage('Fluffy Build') {
+    stage('BUZZ Build') {
       steps {
-        echo 'Placeholder'
-        sh 'echo Edited Placeholder'
+        sh '''echo "I am ${BUZZ_NAME}"
+./build.sh'''
+        archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
       }
     }
 
-    stage('Fluffy Test') {
-      steps {
-        sh 'sleep 5'
-        sh 'echo Success!'
+    stage('Buzz Test') {
+      parallel {
+        stage('Testing A') {
+          steps {
+            junit 'src/my-app/target/surefire-reports/**/*.xml'
+          }
+        }
+
+        stage('Testing B') {
+          steps {
+            sh '''sleep 10
+echo done'''
+          }
+        }
+
       }
     }
 
-    stage('Fluffy deploy') {
-      steps {
-        echo 'Placeholder'
-      }
-    }
-
+  }
+  environment {
+    BUZZ_NAME = 'WORKER BEE'
   }
 }
