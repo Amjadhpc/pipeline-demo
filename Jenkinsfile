@@ -6,9 +6,9 @@ pipeline {
         stage('Build 7') {
           steps {
             sh '''echo "I am ${BUZZ_NAME}"
-        yum install maven -y 
+    sudo    yum install maven -y 
 ./build.sh
- yum remove maven -y '''
+ sudo yum remove maven -y '''
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
             stash(name: 'Buzz Java 7', includes: 'src/my-app/target/**')
           }
@@ -26,9 +26,9 @@ pipeline {
           }
           steps {
             sh '''echo "I am ${BUZZ_NAME}"
-        yum install maven -y 
+     sudo   yum install maven -y 
 ./build.sh
- yum remove maven -y '''
+sudo yum remove maven -y '''
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
             stash(name: 'Buzz Java 8', includes: 'src/my-app/target/**')
           }
