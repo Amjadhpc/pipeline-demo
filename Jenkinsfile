@@ -6,7 +6,7 @@ pipeline {
         stage('Build 7') {
           agent {
             node {
-              label 'java 7'
+              label 'java7'
             }
 
           }
