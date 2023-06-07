@@ -10,6 +10,7 @@ pipeline {
 ./build.sh
  yum remove maven -y '''
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+            stash(name: 'Buzz Java 7', includes: 'src/my-app/target/**')
           }
         }
 
@@ -29,6 +30,7 @@ pipeline {
 ./build.sh
  yum remove maven -y '''
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+            stash(name: 'Buzz Java 8', includes: 'src/my-app/target/**')
           }
         }
 
@@ -40,6 +42,7 @@ pipeline {
         stage('Testing A') {
           steps {
             junit 'src/my-app/target/surefire-reports/**/*.xml'
+            unstash 'Buzz Java 7'
           }
         }
 
@@ -47,6 +50,7 @@ pipeline {
           steps {
             sh '''sleep 10
 echo done'''
+            unstash 'Buzz Java 8'
           }
         }
 
