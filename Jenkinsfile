@@ -4,7 +4,7 @@ pipeline {
     stage('BUZZ Build') {
       agent {
         node {
-          label 'java-7'
+          label 'java7'
         }
 
       }
@@ -20,7 +20,7 @@ pipeline {
         stage('Testing A') {
           agent {
             node {
-              label 'java-7'
+              label 'java7'
             }
 
           }
@@ -32,7 +32,7 @@ pipeline {
         stage('Testing B') {
           agent {
             node {
-              label 'java-7'
+              label 'java7'
             }
 
           }
