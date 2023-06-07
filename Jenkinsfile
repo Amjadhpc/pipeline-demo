@@ -4,7 +4,9 @@ pipeline {
     stage('BUZZ Build') {
       steps {
         sh '''echo "I am ${BUZZ_NAME}"
-./build.sh'''
+        yum install maven -y 
+./build.sh
+ yum remove maven -y '''
         archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
       }
     }
