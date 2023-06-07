@@ -20,6 +20,9 @@ pipeline {
             }
 
           }
+          environment {
+            BUZZ_NAME = 'JAva 8 Bee'
+          }
           steps {
             sh '''echo "I am ${BUZZ_NAME}"
         yum install maven -y 
