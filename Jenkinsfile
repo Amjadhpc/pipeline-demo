@@ -2,6 +2,12 @@ pipeline {
   agent any
   stages {
     stage('BUZZ Build') {
+      agent {
+        node {
+          label 'java-7'
+        }
+
+      }
       steps {
         sh '''echo "I am ${BUZZ_NAME}"
 ./build.sh'''
@@ -12,12 +18,24 @@ pipeline {
     stage('Buzz Test') {
       parallel {
         stage('Testing A') {
+          agent {
+            node {
+              label 'java-7'
+            }
+
+          }
           steps {
             junit 'src/my-app/target/surefire-reports/**/*.xml'
           }
         }
 
         stage('Testing B') {
+          agent {
+            node {
+              label 'java-7'
+            }
+
+          }
           steps {
             sh '''sleep 10
 echo done'''
