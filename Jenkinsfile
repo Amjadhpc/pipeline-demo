@@ -4,6 +4,12 @@ pipeline {
     stage('BUZZ Build') {
       parallel {
         stage('Build 7') {
+          agent {
+            node {
+              label 'java 7'
+            }
+
+          }
           steps {
             sh '''echo "I am ${BUZZ_NAME}"
     sudo    yum install maven -y 
@@ -40,6 +46,12 @@ sudo yum remove maven -y '''
     stage('Buzz Test') {
       parallel {
         stage('Testing A') {
+          agent {
+            node {
+              label 'java7'
+            }
+
+          }
           steps {
             junit 'src/my-app/target/surefire-reports/**/*.xml'
             unstash 'Buzz Java 7'
@@ -47,6 +59,12 @@ sudo yum remove maven -y '''
         }
 
         stage('Testing B') {
+          agent {
+            node {
+              label 'java8'
+            }
+
+          }
           steps {
             sh '''sleep 10
 echo done'''
