@@ -2,12 +2,33 @@ pipeline {
   agent any
   stages {
     stage('BUZZ Build') {
-      steps {
-        sh '''echo "I am ${BUZZ_NAME}"
+      parallel {
+        stage('Build 7') {
+          steps {
+            sh '''echo "I am ${BUZZ_NAME}"
         yum install maven -y 
 ./build.sh
  yum remove maven -y '''
-        archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+            archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+          }
+        }
+
+        stage('Build 8') {
+          agent {
+            node {
+              label 'java8'
+            }
+
+          }
+          steps {
+            sh '''echo "I am ${BUZZ_NAME}"
+        yum install maven -y 
+./build.sh
+ yum remove maven -y '''
+            archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+          }
+        }
+
       }
     }
 
