@@ -81,6 +81,20 @@ echo done'''
       }
     }
 
+    stage('Deployment') {
+      agent {
+        node {
+          label 'java8'
+        }
+
+      }
+      steps {
+        unstash 'Buzz Java 8'
+        sh '''echo $hostname
+echo "I am deployed on "'''
+      }
+    }
+
   }
   environment {
     BUZZ_NAME = 'WORKER BEE'
