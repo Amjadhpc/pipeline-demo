@@ -90,8 +90,9 @@ echo done'''
       }
       steps {
         unstash 'Buzz Java 8'
-        sh '''echo $hostname
-echo "I am deployed on "'''
+        sh '''host=$(hostname)
+echo $host
+echo "I am deployed on $host "'''
       }
     }
 
