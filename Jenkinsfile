@@ -16,7 +16,7 @@ sudo yum remove maven -y '''
         stage('Backend') {
           steps {
             sh 'echo backend'
-            junit 'src/my-app/target/surefire-reports/**/TEST*.xml'
+            junit "src/my-app/target/surefire-reports/**/TEST*.xml"
           }
         }
         stage('Frontend') {
