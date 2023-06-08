@@ -75,6 +75,12 @@ echo done'''
       }
     }
 
+    stage('Confirm Deploy') {
+      steps {
+        input(message: 'Deploy the stage', ok: 'Lets do it', submitter: 'Amjad')
+      }
+    }
+
   }
   environment {
     BUZZ_NAME = 'WORKER BEE'
