@@ -2,33 +2,26 @@ pipeline {
   agent any
   stages {
     stage('BUZZ Build') {
+    parallel{
+      stage('Build Java 7'){
       steps {
         sh '''echo "I am ${BUZZ_NAME}"
 ./build.sh'''
+}
+
+post {
+ always{
         archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
-      }
+ }    
+  success {
+     stash (name: 'Buzz Java 7',includes : 'src/my-app/target/**')  
+  
+         }
+     }
     }
-
-    stage('Buzz Test') {
-      parallel {
-        stage('Testing A') {
-          steps {
-            junit 'src/my-app/target/surefire-reports/**/*.xml'
-          }
-        }
-
-        stage('Testing B') {
-          steps {
-            sh '''sleep 10
-echo done'''
-          }
-        }
-
-      }
-    }
-
+  
   }
-  environment {
-    BUZZ_NAME = 'WORKER BEE'
-  }
+}
+}
+}
 }
