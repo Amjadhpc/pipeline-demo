@@ -106,3 +106,4 @@ echo "I am deployed on $host "'''
     BUZZ_NAME = 'WORKER BEE'
   }
 }
+}
