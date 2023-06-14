@@ -15,7 +15,12 @@ pipeline {
     sudo    yum install maven -y 
 ./build.sh
  sudo yum remove maven -y '''
+          }
+          post {
+            always {
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
+            }
+            success {
             stash(name: 'Buzz Java 7', includes: 'src/my-app/target/**')
           }
         }
