@@ -77,7 +77,7 @@ echo done'''
 
     stage('Confirm Deploy') {
       when {
-        branch 'intermediate-pipeline'
+        branch 'main'
       }
       steps {
         input(message: 'Deploy the stage', ok: 'Lets do it', submitter: 'Amjad')
