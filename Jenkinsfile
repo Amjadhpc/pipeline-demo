@@ -14,16 +14,15 @@ pipeline {
             sh '''echo "I am ${BUZZ_NAME}"
     sudo    yum install maven -y 
 ./build.sh
-'''
- #sudo yum remove maven -y '''
-            post {
-              success {
+ sudo yum remove maven -y '''
+            
+              
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
             stash(name: 'Buzz Java 7', includes: 'src/my-app/target/**')
           }
         }
-          }
-        }
+        
+        
         stage('Build 8') {
           agent {
             node {
