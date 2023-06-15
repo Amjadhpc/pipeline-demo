@@ -14,7 +14,8 @@ pipeline {
             sh '''echo "I am ${BUZZ_NAME}"
     sudo    yum install maven -y 
 ./build.sh
- sudo yum remove maven -y '''
+'''
+ #sudo yum remove maven -y '''
             post {
               success {
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
