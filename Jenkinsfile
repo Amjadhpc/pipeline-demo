@@ -15,11 +15,14 @@ pipeline {
     sudo    yum install maven -y 
 ./build.sh
  sudo yum remove maven -y '''
+            post {
+              success {
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
             stash(name: 'Buzz Java 7', includes: 'src/my-app/target/**')
           }
         }
-
+          }
+        }
         stage('Build 8') {
           agent {
             node {
@@ -35,11 +38,14 @@ pipeline {
      sudo   yum install maven -y 
 ./build.sh
 sudo yum remove maven -y '''
+            post {
+              success {
             archiveArtifacts(artifacts: 'src/my-app/target/*.jar', fingerprint: true)
             stash(name: 'Buzz Java 8', includes: 'src/my-app/target/**')
           }
         }
-
+          }
+        }
       }
     }
 
